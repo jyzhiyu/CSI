@@ -101,7 +101,6 @@ def main():
     ErrFlag=0
 
     StartDate = datetime.date(2012, 1, 1)
-    StartDate = datetime.date(2012, 1, 1)
     StepDate = datetime.timedelta(days=1)
     EndDate = datetime.date.today()
 

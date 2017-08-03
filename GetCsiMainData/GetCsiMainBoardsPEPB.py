@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #  -*- coding:utf-8 -*-
 # Created by Jyzhiyu on 2017-8-2
-__version__ = '1.0'
+__version__ = '1.0.1'
 __author__ = 'jyzhiyu@gmail.com'
 __license__ = 'GPL'
 
 #-----------------------------------------------------
-# File: GetCsiMainData
-# Date: 2017-8-2
+# File: GetCsiMainBoardsData
+# Date: 2017-8-3
 # Description:
 #-----------------------------------------------------
 
@@ -16,6 +16,7 @@ import xlrd,xlwt
 from xlutils.copy import copy
 import requests
 from html.parser import HTMLParser
+
 
 CsiAddrHeader = "http://www.csindex.cn/zh-CN/downloads/industry-price-earnings-ratio?"
 
@@ -105,7 +106,7 @@ def main():
     EndDate = datetime.date.today()
 
     #Setting the excel file name for operation
-    ExcelFileName = u'主要板块.xls'
+    ExcelFileName = u'MainBoardsData.xls'
     #If the Excel file is not exist, create a new one
     try:
         ReadExcelFileHandle = xlrd.open_workbook(ExcelFileName)
@@ -176,7 +177,7 @@ def main():
             else:
                 #Write data into worksheet
                 WriteSheet.write(NewRowIndex, 0, WorkDay, DateFormat)
-                for i in range(12):
+                for i in range(len(DataBuf)):
                     WriteSheet.write(NewRowIndex, i+1, DataBuf[i])
 
                 #update the new row index
@@ -184,7 +185,7 @@ def main():
 
             # init the databuffer to next operation
             DataBuf = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            WriteExcelFileHandle.save(u'主要板块.xls')
+            WriteExcelFileHandle.save(ExcelFileName)
 
             if WorkDay.weekday() == 4:
                 WorkDay = WorkDay + StepDate + StepDate + StepDate  # Jump to next Monday

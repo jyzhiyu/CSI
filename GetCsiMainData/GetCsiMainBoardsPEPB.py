@@ -18,7 +18,7 @@ import requests
 from html.parser import HTMLParser
 
 
-CsiAddrHeader = "http://www.csindex.cn/zh-CN/downloads/industry-price-earnings-ratio?"
+CsiAddrHeader = "http://www.csindex.com.cn/zh-CN/downloads/industry-price-earnings-ratio?"
 
 class ClassCsiJsonPayload:
     def __init__(self):
